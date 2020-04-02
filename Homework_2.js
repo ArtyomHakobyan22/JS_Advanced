@@ -1,14 +1,15 @@
 // 1)
 
-function arrayCompare(arr, number) {
+  function arrayCompare(arr, number) {
     let result = [];
+    
+    result = arr.filter(num => num > number )
 
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] > number) {
-        result.push(arr[i]);
-      }
+    if (result.length > 1) {
+      return result;
+    } else {
+      return ("Such values do not exist");
     }
-    return result;
   }
   console.log(arrayCompare([10, 25, 16, -5, 30, 15, 24], 16));
 
@@ -56,6 +57,8 @@ function arrayCompare(arr, number) {
     return - 1;
   }
   console.log(sortErrorIndex([-9, -4, -4, -3, 12, 4, 5]));
+
+  //-----------------------------------------------------------------------------------------------//
 
   // 4)
 
