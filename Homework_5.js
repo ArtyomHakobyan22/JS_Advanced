@@ -10,11 +10,9 @@
 
       if (result === element) {
         return (`Index: ${mid}`);
-      } else if (result > element) {
-        end = mid - 1;
-      } else if (result < element) {
-        start = mid + 1
       }
+
+      result > element ? end = mid - 1: start = mid + 1 
     }
     return ('No such element in the array');
   }
