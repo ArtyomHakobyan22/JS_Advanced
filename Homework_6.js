@@ -34,15 +34,12 @@ function checkPalindrome(str) {
 
 // 4)
 
-function correctOption(str, arr) {
+  function correctOption(str, arr) {
     let str1 = str.split('').sort().join('');
     let arr1 = [];
     let arr2 = [];
 
-    for (let i = 0; i < arr.length; i++) {
-      let element = arr[i].split('').sort().join('');
-      arr1.push(element)
-    }
+    arr.forEach((el) => arr1.push(el.split('').sort().join('')));
 
     for (let i = 0; i < arr1.length; i++) {
       if (arr1[i] === str1) {
