@@ -1,97 +1,97 @@
 // 1)
 
 class Author {
-    constructor(name, email, gender) {
-      this._name = name;
-      this._email = email;
-      this._gender = gender;
-    }
+  constructor(name, email, gender) {
+    this.name = name;
+    this.email = email;
+    this.gender = gender;
+  }
 
-    get name() {
-      return this._name
-    }
-    get email() {
-      return this._email
-    }
-    get gender() {
-      return this._gender
-    }
+  get name() {
+    return this._name
+  }
+  get email() {
+    return this._email
+  }
+  get gender() {
+    return this._gender
+  }
 
-    set name(value1) {
-      this._name = value1;
-    }
-    set email(value2) {
-      this._email = value2;
-    }
-    set gender(value3) {
-      this._gender = value3;
-    }
+  set name(value1) {
+    this._name = value1;
+  }
+  set email(value2) {
+    this._email = value2;
+  }
+  set gender(value3) {
+    this._gender = value3;
+  }
 
-    toString() {
-      return (`${this._name} is considered to be among the greatest writers of short fiction in history.`);
+  toString() {
+    return ('This is Author toString()');
+  }
+}
+
+
+
+let author1 = new Author('Chekhov', 'antonchekhov@mail.ru', 'male');
+console.log(author1);
+console.log(author1.toString());
+
+
+
+class Book {
+  constructor(title, author, price, quantity) {
+    this.title = title;
+    this.author = author;
+    this.price = price;
+    this.quantity = quantity;
+  }
+
+  get title() {
+    return this._title;
+  }
+  get author() {
+    return this._author;
+  }
+  get price() {
+    return this._price;
+  }
+  get quantity() {
+    return this._quantity;
+  }
+
+  set title(val1) {
+    this._title = val1;
+  }
+  set author(val2) {
+    if (val2 instanceof Author) {
+      this._author = val2;
     }
   }
-  
-  
-  
-  let author1 = new Author('Chekhov', 'antonchekhov@mail.ru', 'male');
-  console.log(author1);
-  console.log(author1.toString());
-
-  
-  
-  class Book {
-    constructor(title, author, price, quantity) {
-      this._title = title;
-      this._author = author;
-      this._price = price;
-      this._quantity = quantity;
-    }
-
-    get title() {
-      return this._title;
-    }
-    get author() {
-      return this._author;
-    }
-    get price() {
-      return this.price;
-    }
-    get quantity() {
-      return this._quantity;
-    }
-
-    set title(val1) {
-      this._title = val1;
-    }
-    set author(val2) {
-      if (val2 instanceof Author) {
-        this._author = val2;
-      }
-    }
-    set price(val3) {
-      this._price = val3;
-    }
-    set quantity(val4) {
-      this._quantity = val4;
-    }
-
-    getProfit() {
-      return this._quantity * this._price;
-    }
-
-    toString() {
-      return (`${this._title} is a one-act drama by Anton Checkov`)
-    }
+  set price(val3) {
+    this._price = val3;
   }
-  
-  
-  
-  let book1 = new Book('Tatiana Repina', author1.name, 15, 1000000);
-  console.log(book1);
-  console.log(book1.toString());
-  console.log(book1.getProfit());
-  alert(book1);
+  set quantity(val4) {
+    this._quantity = val4;
+  }
+
+  getProfit() {
+    return this._quantity * this._price;
+  }
+
+  toString() {
+    return (`${this._title} is a one-act drama by Anton Checkov`)
+  }
+}
+
+
+
+let book1 = new Book('Tatiana Repina', author1, 15, 1000000);
+console.log(book1);
+console.log(book1.title);
+console.log(book1.getProfit());
+alert(book1);
 
 //--------------------------------------------------------------------------------------------------------------------------//
 
