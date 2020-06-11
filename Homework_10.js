@@ -231,6 +231,7 @@ class Student extends Person {
   set program(v1) {
     if (typeof v1 === 'object') {
       this._program = v1;
+      this.data = this._program.reduce((t, e)=> (t[e] = 0, t), {});
     }
   }
   set year(v2) {
@@ -249,11 +250,7 @@ class Student extends Person {
       }
   }
 
-  data = {
-    'Math': 0,
-    'Chemistry': 0,
-    'Physics': 0,
-  }
+  data = {}
 
   toString() {
     return ('This is Student toString()')
@@ -273,8 +270,8 @@ console.log(s1);
 class Teacher extends Person {
   constructor(firstName, lastName, gender, age, program, pay) {
     super(firstName, lastName, gender, age);
-    this.program = program;
-    this.pay = pay;
+    this._program = program;
+    this._pay = pay;
   }
 
   get program() {
