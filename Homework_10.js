@@ -36,72 +36,14 @@ class Author {
 
 let author1 = new Author('Chekhov', 'antonchekhov@mail.ru', 'male');
 console.log(author1);
-console.log(author1.toString());
 
 
 
-class Book {
-  constructor(title, author, price, quantity) {
-    this.title = title;
-    this.author = author;
-    this.price = price;
-    this.quantity = quantity;
-  }
-
-  get title() {
-    return this._title;
-  }
-  get author() {
-    return this._author;
-  }
-  get price() {
-    return this._price;
-  }
-  get quantity() {
-    return this._quantity;
-  }
-
-  set title(val1) {
-    this._title = val1;
-  }
-  set author(val2) {
-    if (val2 instanceof Author) {
-      this._author = val2;
-    }
-  }
-  set price(val3) {
-    this._price = val3;
-  }
-  set quantity(val4) {
-    this._quantity = val4;
-  }
-
-  getProfit() {
-    return this._quantity * this._price;
-  }
-
-  toString() {
-    return (`${this._title} is a one-act drama by Anton Checkov`)
-  }
-}
-
-
-
-let book1 = new Book('Tatiana Repina', author1, 15, 1000000);
-console.log(book1);
-console.log(book1.title);
-console.log(book1.getProfit());
-alert(book1);
-
-//--------------------------------------------------------------------------------------------------------------------------//
-
-// 2)
-
-class Account {
+  class Account {
     constructor(id, name, balance) {
       this._id = id;
-      this._name = name;
-      this._balance = balance;
+      this.name = name;
+      this.balance = balance;
     }
 
     get id() {
@@ -166,135 +108,208 @@ class Account {
 
 //--------------------------------------------------------------------------------------------------------------------------//
 
+// 2)
+
+class Account {
+  constructor(id, name, balance) {
+    this._id = id;
+    this.name = name;
+    this.balance = balance;
+  }
+
+  get id() {
+    return this._id
+  }
+  get name() {
+    return this._name
+  }
+  get balance() {
+    return this._balance
+  }
+
+  set name(val1) {
+    this._name = val1;
+  }
+  set balance(val2) {
+    this._balance = val2;
+  }
+
+  credit(amount) {
+    return this._balance += amount;
+  }
+  
+  debit(amount) {
+    if (this._balance - amount < 0) {
+      alert('Amount exceeded Balance')
+    }
+    return this._balance -= amount;
+  }
+  
+  transferTo(anotherAccount, amount) {
+    this.debit(amount);
+    anotherAccount.credit(amount)
+  }
+  
+  static identifyAccounts(a, b) {
+    return Object.entries(a).toString() === Object.entries(b).toString()
+  }
+
+  toString() {
+    return ('Class Trials')
+  }
+}
+
+let acc1 = new Account(1, 'firstAccount', 15000);
+// console.log(acc1);
+// acc1.credit(5000);
+// console.log(acc1);
+// acc1.debit(10000);
+// console.log(acc1);
+// acc1.debit(15000);
+// console.log(acc1);
+// acc1.credit(20000);
+// console.log(acc1);
+let acc2 = new Account(2, 'secondAccount', 22000);
+acc1.transferTo(acc2, 2000);
+console.log(acc1);
+console.log(acc2);
+console.log(Account.identifyAccounts(acc1, acc2));
+console.log(Account.identifyAccounts(acc1, acc1));
+console.log(acc1.toString());
+
+//--------------------------------------------------------------------------------------------------------------------------//
+
 // 3)
 
 class Person {
-    constructor(firstName, lastName, gender, age) {
-      this._firstName = firstName;
-      this._lastName = lastName;
-      this._gender = gender;
-      this._age = age;
-    }
-
-    get firstName() {
-      return this._firstName
-    }
-    get lastName() {
-      return this._lastName
-    }
-    get gender() {
-      return this._gender
-    }
-    get age() {
-      return this._age
-    }
-
-    set firstName(val1) {
-      this._firstName = val1
-    }
-    set lastName(val2) {
-      this._lastName = val2
-    }
-    set gender(val3) {
-      this._gender = val3
-    }
-    set age(val4) {
-      this._age = val4
-    }
-
-    toString() {
-      return ('This is Person toString()')
-    }
+  constructor(firstName, lastName, gender, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.gender = gender;
+    this.age = age;
   }
 
-  let p1 = new Person();
-  
-  class Student extends Person {
-    constructor(firstName, lastName, gender, age, program, year, fee, exams) {
-      super(firstName, lastName, gender, age);
-      this._program = program;
-      this._year = year;
-      this._fee = fee;
-      this._exams = exams;
-    }
-
-    get program() {
-      return this._program;
-    }
-    get year() {
-      return this._year;
-    }
-    get fee() {
-      return this._fee
-    }
-    get exams() {
-      return this._exams;
-    }
-
-    set program(v1) {
-      if (typeof v1 === 'Object') {
-        this._program = v1;
-      }
-    }
-    set year(v2) {
-      this._year = v2;
-    }
-    set fee(v3) {
-      this._fee = v3;
-    }
-    
-    passExam(subject, grade) {
-      if (this._program.includes(subject)) {
-        this._exams.push(grade);
-      }
-      if (this._exams.length === this._program.length && this._exams.reduce((t, e) => t += e) / this._exams.length > 50) {
-          return this._year += 1
-        }
-    }
-
-    toString() {
-      return ('This is Student toString()')
-    }
+  get firstName() {
+    return this._firstName
+  }
+  get lastName() {
+    return this._lastName
+  }
+  get gender() {
+    return this._gender
+  }
+  get age() {
+    return this._age
   }
 
-  
-  
-  let s1 = new Student('Aaron', 'Jacobs', 'male', 18, ['Math', 'Chemistry', 'Physics'], 1, 1000, []);
-  s1.passExam('Math', 99);
-  s1.passExam('Chemistry', 100);
-  s1.passExam('Physics', 97);
-  console.log(s1);
+  set firstName(val1) {
+    this._firstName = val1
+  }
+  set lastName(val2) {
+    this._lastName = val2
+  }
+  set gender(val3) {
+    this._gender = val3
+  }
+  set age(val4) {
+    this._age = val4
+  }
 
-  
-  
-  class Teacher extends Person {
-    constructor(firstName, lastName, gender, age, program, pay) {
-      super(firstName, lastName, gender, age);
-      this._program = program;
-      this._pay = pay;
-    }
+  toString() {
+    return ('This is Person toString()')
+  }
+}
 
-    get program() {
-      return this._program;
-    }
-    get pay() {
-      return this._pay;
-    }
+let p1 = new Person();
 
-    set program(value1) {
-      if (typeof value1 === 'string') {
-        this._program = value1;
-      }
-    }
-    set pay(value2) {
-      this._pay =value2;
-    }
+class Student extends Person {
+  constructor(firstName, lastName, gender, age, program, year, fee) {
+    super(firstName, lastName, gender, age);
+    this.program = program;
+    this.year = year;
+    this.fee = fee;
+  }
 
-    toString() {
-      return ('This is Teacher toString()')
+  get program() {
+    return this._program;
+  }
+  get year() {
+    return this._year;
+  }
+  get fee() {
+    return this._fee
+  }
+
+  set program(v1) {
+    if (typeof v1 === 'object') {
+      this._program = v1;
     }
   }
-  let t1 = new Teacher();
-  alert(p1);
-  alert(s1);
-  alert(t1);
+  set year(v2) {
+    this._year = v2;
+  }
+  set fee(v3) {
+    this._fee = v3;
+  }
+  
+  passExam(subject, grade) {
+    if (subject in this.data) {
+      this.data[subject] = grade;
+    }
+    if (Object.values(this.data).every((num) => num > 50)) {
+        return this._year += 1
+      }
+  }
+
+  data = {
+    'Math': 0,
+    'Chemistry': 0,
+    'Physics': 0,
+  }
+
+  toString() {
+    return ('This is Student toString()')
+  }
+}
+
+
+
+let s1 = new Student('Aaron', 'Jacobs', 'male', 18, ['Math', 'Chemistry', 'Physics'], 1, 1000);
+s1.passExam('Math', 99);
+s1.passExam('Chemistry', 100);
+s1.passExam('Physics', 97);
+console.log(s1);
+
+
+
+class Teacher extends Person {
+  constructor(firstName, lastName, gender, age, program, pay) {
+    super(firstName, lastName, gender, age);
+    this.program = program;
+    this.pay = pay;
+  }
+
+  get program() {
+    return this._program;
+  }
+  get pay() {
+    return this._pay;
+  }
+
+  set program(value1) {
+    if (typeof value1 === 'string') {
+      this._program = value1;
+    }
+  }
+  set pay(value2) {
+    this._pay =value2;
+  }
+
+  toString() {
+    return ('This is Teacher toString()')
+  }
+}
+let t1 = new Teacher();
+alert(p1);
+alert(s1);
+alert(t1);
