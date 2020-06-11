@@ -28,7 +28,7 @@ class Author {
   }
 
   toString() {
-    return ('This is Author toString()');
+    return (`${this._name} is considered to be among the greatest writers of short fiction in history.`);
   }
 }
 
@@ -36,75 +36,63 @@ class Author {
 
 let author1 = new Author('Chekhov', 'antonchekhov@mail.ru', 'male');
 console.log(author1);
+console.log(author1.toString());
 
 
 
-  class Account {
-    constructor(id, name, balance) {
-      this._id = id;
-      this.name = name;
-      this.balance = balance;
-    }
+class Book {
+  constructor(title, author, price, quantity) {
+    this.title = title;
+    this.author = author;
+    this.price = price;
+    this.quantity = quantity;
+  }
 
-    get id() {
-      return this._id
-    }
-    get name() {
-      return this._name
-    }
-    get balance() {
-      return this._balance
-    }
+  get title() {
+    return this._title;
+  }
+  get author() {
+    return this._author;
+  }
+  get price() {
+    return this._price;
+  }
+  get quantity() {
+    return this._quantity;
+  }
 
-    set name(val1) {
-      this._name = val1;
-    }
-    set balance(val2) {
-      this._balance = val2;
-    }
-
-    credit(amount) {
-      return this._balance += amount;
-    }
-    
-    debit(amount) {
-      if (this._balance - amount < 0) {
-        alert('Amount exceeded Balance')
-      }
-      return this._balance -= amount;
-    }
-    
-    transferTo(anotherAccount, amount) {
-      this.debit(amount);
-      anotherAccount.credit(amount)
-    }
-    
-    static identifyAccounts(a, b) {
-      return Object.entries(a).toString() === Object.entries(b).toString()
-    }
-
-    toString() {
-      return ('Class Trials')
+  set title(val1) {
+    this._title = val1;
+  }
+  set author(val2) {
+    if (val2 instanceof Author) {
+      this._author = val2;
     }
   }
-  
-  let acc1 = new Account(1, 'firstAccount', 15000);
-  // console.log(acc1);
-  // acc1.credit(5000);
-  // console.log(acc1);
-  // acc1.debit(10000);
-  // console.log(acc1);
-  // acc1.debit(15000);
-  // console.log(acc1);
-  // acc1.credit(20000);
-  // console.log(acc1);
-  let acc2 = new Account(2, 'secondAccount', 22000);
-  acc1.transferTo(acc2, 2000);
-  console.log(acc1);
-  console.log(acc2);
-  console.log(Account.identifyAccounts(acc1, acc2));
-  console.log(Account.identifyAccounts(acc1, acc1));
-  console.log(acc1.toString());
+  set price(val3) {
+    this._price = val3;
+  }
+  set quantity(val4) {
+    this._quantity = val4;
+  }
+
+  getProfit() {
+    return this._quantity * this._price;
+  }
+
+  toString() {
+    return (`${this._title} is a one-act drama by Anton Checkov`)
+  }
+}
+
+
+
+let book1 = new Book('Tatiana Repina', author1, 15, 1000000);
+console.log(book1);
+console.log(book1.title)
+console.log(book1.toString());
+console.log(book1.getProfit());
+alert(book1);
 
 //--------------------------------------------------------------------------------------------------------------------------//
 
