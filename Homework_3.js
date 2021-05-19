@@ -103,3 +103,10 @@
     }
   }
   console.log(digitSumUp(993));
+
+  // --------------------------Improved-------------------------- //
+
+  function digitSumUp(num) {
+     let num1 = num.toString().split("").map(Number).reduce((t, e) => t +=e)
+     return num1 > 9 ? digitSumUp(num1) : num1
+  }
