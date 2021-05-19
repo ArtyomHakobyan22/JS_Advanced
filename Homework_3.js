@@ -38,19 +38,11 @@
   }
   console.log(smallestPositive([56, -9, 87, -23, 0, -105, 55, 1]));
 
-  // // or...
+  // -------------------------------------Improved------------------------------------- //
   
-  // function smallestPositive(arr) {
-  //   let positives = arr.filter((item) => item >= 0).sort((a, b) => a - b);
-  
-  //   if (positives.length === 1) {
-  //     return positives[0];
-  //   } else {
-  //     positives.pop();
-  //     return smallestPositive(positives);
-  //   }
-  // }
-  // console.log(smallestPositive([56, -9, 87, -23, 0, -105, 55, 1]));
+  function smallestPositive(arr) {
+    return arr.filter(e => e > 0).sort((a, b) => a - b)[0]
+  }
 
   // 3)
 
